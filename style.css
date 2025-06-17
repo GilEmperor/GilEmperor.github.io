@@ -1,0 +1,754 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+  --GraffFont: 'Callahan', sans-serif;
+}
+
+  
+  html, body {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+    color: rgb(255, 255, 255);
+  }
+  
+  .container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  .section {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: left;
+    margin-left: 20%;
+  }
+  
+  .content {
+    max-width: 1000px;
+  }
+  
+  h1, h2, h3 {
+    margin-bottom: 1rem;
+    font-family: var(--GraffFont);
+    font-weight: normal;
+  }
+
+h1 {
+  font-size: 3rem;
+  color: #3E47FF;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+h1:not(.hero h1)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  height: 4px;
+  width: calc(100% + 40px);
+  background-color: #f90000;
+  border-radius: 2px;
+}
+
+
+  
+  h2 {
+    font-size: 2rem;
+    
+    
+  }
+  
+  h3 {
+    font-size: 1.7rem;
+    
+  }
+  
+  p {
+    line-height: 1.7;
+    margin-bottom: 1em;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  article {
+    margin-bottom: 2rem;
+  }
+
+  em {
+  font-style: normal; /* cancel italic */
+  font-weight: bold;  /* apply bold */
+}
+
+article a {
+  text-decoration: none;
+  color: #3E47FF;
+  transition: color 0.3s ease;
+}
+
+article a:hover {
+  color: #f90000;
+}
+
+  
+  /* Different backgrounds per section */
+  .hero {
+    background-color: #3E47FF;
+  }
+  
+  .OverMij {
+    background-color: #000000;
+  }
+  
+  .werk {
+    background-color: #f90000;  
+  }
+
+  .skills {
+    background-color: #3E47FF;  
+  }
+  
+  .contact {
+    background-color: #f90000;  
+  }
+
+  /* Styling navigatie */
+  .side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20vw;
+    height: 100vh;
+    background-color: #ffffff;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .side-nav ul {
+    list-style: none;
+    padding: 20%;
+    text-align: right;
+  }
+  
+  .side-nav li {
+    margin: 30px 0;
+  }
+  
+  .side-nav a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+    font-family: 'Callahan', sans-serif;
+                                                
+                                                
+  }
+  
+  .side-nav a:hover {
+    color: #f90000;
+  }
+
+  .nav-link {
+    display: inline-block;
+    transform: scale(1);
+    transition: color 0.3s ease;;
+  }
+
+  .nav-link.active {
+    color: #3E47FF;
+  }
+  
+  nav img{
+    position: absolute;
+    top: 0%;
+    left: 10%;
+    width: 80%;
+    transition: transform 0.3s ease;
+  }
+
+  nav img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Styling van images div */
+.text-images {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem; /* optioneel: ruimte tussen tekst en afbeeldingen */
+  align-items: center;
+}
+
+.text-images article {
+  flex: 1;
+  max-width: 50%;
+}
+
+.images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 50%;
+  justify-content: center;
+}
+
+
+.images img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.images img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  z-index: 2; /* zorgt dat de afbeelding iets boven andere blijft */
+}
+
+
+.opbouwen .text-images:nth-of-type(2) {
+  margin-bottom: 3rem;
+   
+}
+
+
+.text-images.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Lightbox overlay, full screen en bovenop */
+#lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Als lightbox actief is: show */
+#lightbox.active {
+  display: flex;
+}
+
+/* De vergrote afbeelding */
+#lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Close knop */
+#lightboxClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2.5rem;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+  line-height: 1;
+  padding: 0;
+}
+
+
+/* Styling van hero */
+  .hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  /*  Styling van OverMij */
+
+  .OverMij h2 {
+    color: white;
+  }
+
+  .OverMij p:first-of-type {
+    font-weight: bold;
+  }
+
+  /*  Styling van werk */
+
+.werk h2 {
+  color: white;
+}
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .project-card {
+    width: 100%;
+    aspect-ratio: 5 / 3; /* Zorgt voor verhouding zoals een masker */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    background-color: #eee;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    z-index: 2; /* zorgt dat de afbeelding iets boven andere blijft */
+  }
+
+  
+  .project-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Belangrijk: dit is jouw masker-effect */
+    object-position: center;
+    display: block;
+  }
+
+  
+  /*  Styling van skills */
+
+  .skills h2 {
+    color: white;
+  }
+
+  .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.skills-column {
+  background-color: #c2c2c234;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.skills-column h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
+
+.chip {
+  display: inline-block;
+  margin: 6px 6px 0 0;
+  padding: 0.5rem 1rem;
+  background-color: #e0e7ff69;
+  color: #000000;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.chip:hover {
+  background-color: #c7d2fe;
+}
+
+  /*  Styling van contact */
+
+.contact h2 {
+  color: white;
+}
+
+.contact-linkbox {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: nowrap; /* Zorgt dat er NIET gewrapt wordt */
+  margin-top: 2rem;
+}
+
+.contact-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  transition: transform 0.2s ease;
+  width: 8rem; /* of 10rem – naar smaak */
+}
+
+.contact-link:hover {
+  transform: scale(1.05);
+}
+
+.contact-link img {
+  width: 6rem;
+  height: auto;
+}
+
+.contact-link span {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .contact-linkbox {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contact-link {
+    width: 40%; /* Twee naast elkaar */
+    margin-bottom: 2rem;
+  }
+}
+
+
+  /* Styling van theflowoflife */
+
+body.theflowoflife .container {
+  color: #000000;
+  background-color: #ffffff;
+  overflow-y: auto;
+  scroll-snap-type: none;
+  scroll-behavior: smooth;
+}
+
+body.theflowoflife .side-nav ul{
+  padding-top: 40%;
+}
+
+body.theflowoflife .side-nav li{
+  margin: 20px 0;
+}
+
+body.theflowoflife h1{
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+body.theflowoflife .side-nav a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  transition: color 0.3s ease;
+}
+
+body.theflowoflife iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.filler{
+  color: #ffffff00;
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+}
+
+/*
+.theflowoflife {
+  background-color: #29ff50;
+}
+
+.eersteidee {
+  background-color: #36f459;
+}
+
+.MPLeren {
+  background-color: #28dd49;
+}
+
+.MPPlanten {
+  background-color: #1fc43d;
+}
+
+.aanpassingen {
+  background-color: #13cf36;
+}
+
+.experimenteren {
+  background-color: #07e630;
+}
+
+.prototype2 {
+  background-color: #12f53c;
+}
+
+
+
+.opbouwen {
+  background-color: #1fe143;
+}
+
+.eindresultaat {
+  background-color: #3fe75d;
+}
+
+.reflectie {
+  background-color: #0cdb32;
+}
+  */
+
+ .eindexpo {
+  padding-bottom: 300px;
+} 
+
+
+
+  body.LoogmanStage .container {
+  color: black;
+  overflow-y: auto;
+  scroll-snap-type: none;
+  scroll-behavior: smooth;
+}
+
+body.LoogmanStage .side-nav ul{
+  padding-top: 40%;
+}
+
+body.LoogmanStage .side-nav li{
+  margin: 20px 0;
+}
+
+body.LoogmanStage h1{
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+body.LoogmanStage .side-nav a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+body.LoogmanStage .text-images > img {
+  width: 20vw;
+  max-width: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.LoogmanApp .images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+}
+
+.LoogmanApp .images img:nth-child(4),
+.LoogmanApp .images img:nth-child(5) {
+  grid-column: span 2;
+}
+
+.LoogmanApp .images img:nth-child(4) {
+  grid-column-start: 1;
+}
+
+.LoogmanApp .images img:nth-child(5) {
+  grid-column-start: 2;
+}
+
+.LoogmanApp .images img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.toekomst {
+  margin-top: 10rem;
+}
+.toekomst .content > article{
+  margin-bottom: 7rem;
+}
+
+.designchallenge {
+  background-color: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  padding: 3rem;
+}
+
+.designchallenge p {
+  font-size: 1.5rem;
+}
+
+.list-box {
+  background-color: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 12px;
+  padding: 3rem;
+}
+
+.list-box ol {
+  margin-left: 2rem;
+}
+.list-box li {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.figma-shadow-wrapper {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.figma-crop-container {
+  position: relative;
+  width: 288px;
+  height: 585px;
+  overflow: hidden;
+  border-radius: 48px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+body.LoogmanStage .cropped-figma {
+  position: absolute;
+  top: -190px;
+  left: -355px;
+  width: 1000px;
+  height: 1000px;
+  border: none;
+  scale: 0.7;
+}
+
+
+
+/* Schaduw buiten onderkant */
+.figma-shadow-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; /* iets lager geplaatst */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;           /* groter in de breedte */
+  height: 40px;           /* groter in de hoogte */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.4),   /* donkerder */
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(8px);      /* iets meer vervaging voor een realistisch effect */
+  z-index: 0;
+}
+
+/* Styling van SeSocialMinder */
+
+.human .images img{
+  padding: 3rem;
+  border-bottom-right-radius: 15rem;
+  border-bottom-left-radius: 15rem;
+}
+
+.SUE-framework {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+}
+
+.SUE-framework img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px; /* optioneel, voor nette afgeronde hoeken */
+}
+
+.interventie1 .text-images .images{
+  padding: 10rem;
+}
+
+.interventie1 .content > .images{
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+}
+
+.interventie2 .content > .images{
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+}
+
+.interventie3 .text-images .images:first-child{
+  padding: 8rem;
+}
+
+.interventie3 .text-images .images:last-child{
+  max-width: 40%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+}
+
+.interventie3 .text-images:last-child{
+  margin-top: 5rem;
+}
+
+/* Styling van LoogmanWidgets */
+
+body.LoogmanWidgets .container {
+  color: black;
+}
+
+body.LoogmanWidgets .cropped-figma {
+  position: absolute;
+  top: -190px;
+  left: -355px;
+  width: 1000px;
+  height: 1000px;
+  border: none;
+  scale: 0.7;
+}

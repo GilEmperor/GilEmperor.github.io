@@ -6,6 +6,15 @@
 
   :root {
   --GraffFont: 'Callahan', sans-serif;
+  --Blauw: #3E47FF;
+  --Wit: #FFFAED;
+  --Zwart: #1D1D1D;
+  --Rood: #D02B22;
+  --WitNav: #FFFAED;
+  --Greybox: #e9e5da;
+  --radius-card: 8px;
+  --radius-button: 4px;
+  --radius-large: 16px;
 }
 
   
@@ -13,7 +22,7 @@
     height: 100%;
     font-family: 'Roboto', sans-serif;
     scroll-behavior: smooth;
-    color: rgb(255, 255, 255);
+    color: var(--Wit);
   }
   
   .container {
@@ -21,6 +30,7 @@
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+    background-color: var(--Wit);
   }
   
   .section {
@@ -47,7 +57,7 @@
 
 h1 {
   font-size: 3rem;
-  color: #3E47FF;
+  color: var(--Blauw);
   position: relative;
   display: inline-block;
   margin-bottom: 1rem;
@@ -60,21 +70,22 @@ h1:not(.hero h1)::after {
   bottom: -10px;
   height: 4px;
   width: calc(100% + 40px);
-  background-color: #f90000;
+  background-color: var(--Rood);
   border-radius: 2px;
 }
 
 
   
   h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     
     
   }
   
   h3 {
-    font-size: 1.7rem;
-    
+    font-size: 1.4rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
   }
   
   p {
@@ -98,34 +109,34 @@ h1:not(.hero h1)::after {
 
 article a {
   text-decoration: none;
-  color: #3E47FF;
+  color: var(--Blauw);
   transition: color 0.3s ease;
 }
 
 article a:hover {
-  color: #f90000;
+  color: var(--Rood);
 }
 
   
   /* Different backgrounds per section */
   .hero {
-    background-color: #3E47FF;
+    background-color: var(--Blauw);
   }
   
   .OverMij {
-    background-color: #000000;
+    background-color: var(--Zwart);
   }
   
   .werk {
-    background-color: #f90000;  
+    background-color: var(--Zwart);  
   }
 
   .skills {
-    background-color: #3E47FF;  
+    background-color: var(--Zwart);  
   }
   
   .contact {
-    background-color: #f90000;  
+    background-color: var(--Zwart);  
   }
 
   /* Styling navigatie */
@@ -135,8 +146,8 @@ article a:hover {
     left: 0;
     width: 20vw;
     height: 100vh;
-    background-color: #ffffff;
-    color: black;
+    background-color: var(--WitNav);
+    color: var(--Zwart);
     display: flex;
     align-items: center;
     justify-content: right;
@@ -154,7 +165,7 @@ article a:hover {
   }
   
   .side-nav a {
-    color: black;
+    color: var(--Zwart);
     text-decoration: none;
     font-size: 1.5rem;
     transition: color 0.3s ease;
@@ -164,7 +175,7 @@ article a:hover {
   }
   
   .side-nav a:hover {
-    color: #f90000;
+    color: var(--Rood);
   }
 
   .nav-link {
@@ -174,7 +185,7 @@ article a:hover {
   }
 
   .nav-link.active {
-    color: #3E47FF;
+    color: var(--Blauw);
   }
   
   nav img{
@@ -217,6 +228,7 @@ article a:hover {
   max-height: 500px;
   object-fit: cover;
   transition: transform 0.3s ease;
+  border-radius: var(--radius-large);
 }
 
 .images img:hover {
@@ -258,7 +270,7 @@ article a:hover {
 #lightbox img {
   max-width: 90vw;
   max-height: 90vh;
-  border-radius: 8px;
+  border-radius: var(--radius-large);
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
@@ -270,7 +282,7 @@ article a:hover {
   font-size: 2.5rem;
   background: transparent;
   border: none;
-  color: white;
+  color: var(--Wit);
   cursor: pointer;
   z-index: 10000;
   line-height: 1;
@@ -282,7 +294,7 @@ article a:hover {
   .hero h1 {
     font-size: 4rem;
     margin-bottom: 1rem;
-    color: white;
+    color: var(--Wit);
   }
   
   .hero p {
@@ -293,7 +305,7 @@ article a:hover {
   /*  Styling van OverMij */
 
   .OverMij h2 {
-    color: white;
+    color: var(--Wit);
   }
 
   .OverMij p:first-of-type {
@@ -303,7 +315,7 @@ article a:hover {
   /*  Styling van werk */
 
 .werk h2 {
-  color: white;
+  color: var(--Wit);
 }
 
   .project-grid {
@@ -317,7 +329,7 @@ article a:hover {
     width: 100%;
     aspect-ratio: 5 / 3; /* Zorgt voor verhouding zoals een masker */
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: var(--radius-large);
     box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     background-color: #eee;
     position: relative;
@@ -343,7 +355,7 @@ article a:hover {
   /*  Styling van skills */
 
   .skills h2 {
-    color: white;
+    color: var(--Wit);
   }
 
   .skills-grid {
@@ -356,14 +368,14 @@ article a:hover {
 .skills-column {
   background-color: #c2c2c234;
   padding: 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-large);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .skills-column h3 {
   margin-top: 0;
   font-size: 1.2rem;
-  color: #000000;
+  color: var(--Wit);
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
 }
@@ -374,7 +386,7 @@ article a:hover {
   margin: 6px 6px 0 0;
   padding: 0.5rem 1rem;
   background-color: #e0e7ff69;
-  color: #000000;
+  color: var(--Zwart);
   font-size: 0.9rem;
   border-radius: 10px;
   font-weight: 500;
@@ -382,13 +394,14 @@ article a:hover {
 }
 
 .chip:hover {
-  background-color: #c7d2fe;
+  background-color: var(--Blauw);
+  color: var(--Wit);
 }
 
   /*  Styling van contact */
 
 .contact h2 {
-  color: white;
+  color: var(--Wit);
 }
 
 .contact-linkbox {
@@ -405,7 +418,7 @@ article a:hover {
   align-items: center;
   text-align: center;
   text-decoration: none;
-  color: #000;
+  color: var(--Wit);
   transition: transform 0.2s ease;
   width: 8rem; /* of 10rem – naar smaak */
 }
@@ -441,8 +454,8 @@ article a:hover {
   /* Styling van theflowoflife */
 
 body.theflowoflife .container {
-  color: #000000;
-  background-color: #ffffff;
+  color: var(--Zwart);
+  background-color: var(--Wit);
   overflow-y: auto;
   scroll-snap-type: none;
   scroll-behavior: smooth;
@@ -482,50 +495,6 @@ body.theflowoflife iframe {
   margin-bottom: -1rem;
 }
 
-/*
-.theflowoflife {
-  background-color: #29ff50;
-}
-
-.eersteidee {
-  background-color: #36f459;
-}
-
-.MPLeren {
-  background-color: #28dd49;
-}
-
-.MPPlanten {
-  background-color: #1fc43d;
-}
-
-.aanpassingen {
-  background-color: #13cf36;
-}
-
-.experimenteren {
-  background-color: #07e630;
-}
-
-.prototype2 {
-  background-color: #12f53c;
-}
-
-
-
-.opbouwen {
-  background-color: #1fe143;
-}
-
-.eindresultaat {
-  background-color: #3fe75d;
-}
-
-.reflectie {
-  background-color: #0cdb32;
-}
-  */
-
  .eindexpo {
   padding-bottom: 300px;
 } 
@@ -533,7 +502,7 @@ body.theflowoflife iframe {
 
 
   body.LoogmanStage .container {
-  color: black;
+  color: var(--Zwart);
   overflow-y: auto;
   scroll-snap-type: none;
   scroll-behavior: smooth;
@@ -573,8 +542,8 @@ body.LoogmanStage .text-images > img {
   max-width: 100%;
   margin: 0 auto;
   padding: 1.5rem;
-  background-color: #f5f5f5;
-  border-radius: 12px;
+  background-color: var(--Greybox);
+  border-radius: var(--radius-large);
 }
 
 .LoogmanApp .images img:nth-child(4),
@@ -605,9 +574,9 @@ body.LoogmanStage .text-images > img {
 }
 
 .designchallenge {
-  background-color: #f5f5f5;
+  background-color: var(--Greybox);
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: var(--radius-large);
   margin-bottom: 2rem;
   padding: 3rem;
 }
@@ -617,9 +586,9 @@ body.LoogmanStage .text-images > img {
 }
 
 .list-box {
-  background-color: #f5f5f5;
+  background-color: var(--Greybox);
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: var(--radius-large);
   padding: 3rem;
 }
 
@@ -690,15 +659,15 @@ body.LoogmanStage .cropped-figma {
   max-width: 100%;
   margin: 0 auto;
   padding: 1.5rem;
-  background-color: #f5f5f5;
-  border-radius: 12px;
+  background-color: var(--Greybox);
+  border-radius: var(--radius-large);
 }
 
 .SUE-framework img {
   max-width: 100%;
   height: auto;
   display: block;
-  border-radius: 8px; /* optioneel, voor nette afgeronde hoeken */
+  border-radius: var(--radius-large); /* optioneel, voor nette afgeronde hoeken */
 }
 
 .interventie1 .text-images .images{
@@ -709,16 +678,16 @@ body.LoogmanStage .cropped-figma {
   max-width: 100%;
   margin: 0 auto;
   padding: 1.5rem;
-  background-color: #f5f5f5;
-  border-radius: 12px;
+  background-color: var(--Greybox);
+  border-radius: var(--radius-large);
 }
 
 .interventie2 .content > .images{
   max-width: 100%;
   margin: 0 auto;
   padding: 1.5rem;
-  background-color: #f5f5f5;
-  border-radius: 12px;
+  background-color: var(--Greybox);
+  border-radius: var(--radius-large);
 }
 
 .interventie3 .text-images .images:first-child{
@@ -729,8 +698,8 @@ body.LoogmanStage .cropped-figma {
   max-width: 40%;
   margin: 0 auto;
   padding: 1.5rem;
-  background-color: #f5f5f5;
-  border-radius: 12px;
+  background-color: var(--Greybox);
+  border-radius: var(--radius-large);
 }
 
 .interventie3 .text-images:last-child{
@@ -740,7 +709,7 @@ body.LoogmanStage .cropped-figma {
 /* Styling van LoogmanWidgets */
 
 body.LoogmanWidgets .container {
-  color: black;
+  color: var(--Zwart);
 }
 
 body.LoogmanWidgets .cropped-figma {
